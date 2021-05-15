@@ -1,11 +1,30 @@
 spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            clientId: da6e4d8ab66cf332f372
-            clientSecret: 2338a6b14f5325323542667d1a94fb3fe6e4b8df
-          google:
-            client-id: 412750279152-evb6hitc6r0tbclbm06m5iav0ci0dhn1.apps.googleusercontent.com
-            client-secret: IZv4qhV5V9RvdO2c3Tbm_aSA
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/diploma_github_google?useUnicode=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  mustache:
+    expose-request-attributes: true
+    prefix: classpath:/templates/
+    suffix: .mustache
+
+google:
+  client:
+    clientId: 412750279152-evb6hitc6r0tbclbm06m5iav0ci0dhn1.apps.googleusercontent.com
+    clientSecret: IZv4qhV5V9RvdO2c3Tbm_aSA
+    accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+    clientAuthenticationScheme: form
+    scope: openid,email,profile
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+    preferTokenInfo: true
